@@ -25,7 +25,7 @@ I build production-grade architectures on **AWS** and **Azure** using **Terrafor
 
 | # | Project | Description | Key Technologies |
 |---|----------|--------------|------------------|
-| 1️⃣ | [Serverless API](./aws-lambda-serverless) | REST API using Lambda, API Gateway & DynamoDB | AWS Lambda, API Gateway, DynamoDB, Cognito, Terraform |
+| 1️⃣ | [Serverless API](../../aws-lambda-serverless) | REST API using Lambda, API Gateway & DynamoDB | AWS Lambda, API Gateway, DynamoDB, Cognito, Terraform |
 | 2️⃣ | [IaC Deployment](./aws/02-iac-terraform) | Automated serverless stack deployment | Terraform, IAM, Lambda |
 | 3️⃣ | [Three-Tier Web App](./aws/03-ecs-three-tier) | Flask API on ECS Fargate + RDS + ALB | ECS, RDS, ALB, Secrets Manager |
 | 4️⃣ | [Monitoring & Scaling](./aws/04-monitoring) | ECS Auto Scaling with CloudWatch | CloudWatch, ECS, Terraform |
