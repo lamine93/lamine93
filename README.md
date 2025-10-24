@@ -14,7 +14,7 @@ I build production-grade architectures on **AWS** and **Azure** using **Terrafor
 - 🌍 Multi-Cloud: AWS & Azure & Google 
 - ⚙️ IaC: Terraform  
 - 🐳 Containers: Docker, ECS, AKS, GKE, EKS  
-- 🔒 Security: IAM, Secrets Manager, Key Vault  
+- 🔒 Security: IAM, Secrets Manager, Azure Key Vault, RBAC  
 - 📊 Monitoring: CloudWatch, Azure Monitor  
 
 ---
