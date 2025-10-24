@@ -38,7 +38,7 @@ I build production-grade architectures on **AWS** and **Azure** using **Terrafor
 |---|----------|--------------|------------------|
 | 1️⃣ | [Hub Spoke](https://github.com/lamine93/vnet-demo) | Scalable network topology | Vnet, Security Group, IAM, Terraform |
 | 2️⃣ | [Container Apps](https://github.com/lamine93/container-app) | Deploying Flask API using Azure Container Apps | ACA, ACR, Terraform |
-| 3️⃣ | [AKS with Terraform](https://github.com/lamine93/aks-demo) | Kubernetes cluster managed via Terraform | AKS, Terraform, ACR |
+| 3️⃣ | [AKS with Terraform](https://github.com/lamine93/gitops-aks) | Kubernetes cluster managed via ArgoCD | AKS, Terraform, ACR |
 | 4️⃣ | [Azure Functions API](https://github.com/lamine93/azure-app-function-v2) | Serverless API with Cosmos DB backend | Azure Functions, Cosmos DB |
 
 ---
