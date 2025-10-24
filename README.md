@@ -36,8 +36,8 @@ I build production-grade architectures on **AWS** and **Azure** using **Terrafor
 
 | # | Project | Description | Key Technologies |
 |---|----------|--------------|------------------|
-| 1️⃣ | [VM Scale Set Deployment](./azure/01-azure-vm-scale-set) | Scalable web app with Azure VM Scale Sets | VMSS, Azure Load Balancer, Terraform |
-| 2️⃣ | [Container Apps](https://github.com/lamine93/container-app) | Deploying Flask API using Azure Container Apps | ACA, ACR, Bicep |
+| 1️⃣ | [Hub Spoke](https://github.com/lamine93/vnet-demo) | Scalable web app with Azure VM Scale Sets | Vnet, Security Group, IAM, Terraform |
+| 2️⃣ | [Container Apps](https://github.com/lamine93/container-app) | Deploying Flask API using Azure Container Apps | ACA, ACR, Terraform |
 | 3️⃣ | [AKS with Terraform](https://github.com/lamine93/aks-demo) | Kubernetes cluster managed via Terraform | AKS, Terraform, ACR |
 | 4️⃣ | [Azure Functions API](https://github.com/lamine93/azure-app-function-v2) | Serverless API with Cosmos DB backend | Azure Functions, Cosmos DB |
 
@@ -48,19 +48,34 @@ I build production-grade architectures on **AWS** and **Azure** using **Terrafor
 | Category | AWS | Azure |
 |-----------|-----|--------|
 | **Compute** | ECS Fargate, Lambda | VMSS, Container Apps, AKS |
-| **Database** | RDS, DynamoDB | Azure SQL, Cosmos DB |
-| **IaC** | Terraform | Terraform, Bicep |
+| **Database** | RDS, DynamoDB | Cosmos DB |
+| **IaC** | Terraform | Terraform |
 | **Secrets** | Secrets Manager | Key Vault |
 | **Networking** | VPC, ALB | VNet, Load Balancer |
 | **Monitoring** | CloudWatch | Azure Monitor |
 
 ---
 
-## 📊 Architecture Example
+## 📊 Architecture Examples
+
+ **🏗️ Three-Tier Web Application on AWS**
 
 ```mermaid
 graph TD
-A[User] --> B[Load Balancer]
-B --> C[ECS / AKS Cluster]
-C --> D[(Database)]
-C --> E[Secrets Manager / Key Vault]
+    A[User] -->|HTTP| B[ALB - Public Subnets]
+    B -->|Forward Traffic| C[ECS Service Fargate- Private Subnets]
+    C -->|DB Connection| D[(Amazon RDS - PostgreSQL)]
+    C -->|Secrets| E[AWS Secrets Manager]
+```
+
+**🚀 AWS ECS Fargate + ALB Deployment (Terraform)**
+
+```mermaid
+graph TD
+    A[User] -->|HTTP| B(ALB - Application Load Balancer)
+    B -->|Forward traffic| C[ECS Fargate Service]
+    C -->|Runs Container| D[Docker App]
+    D -->|Logs| E[CloudWatch Logs]
+    C -->|Pull Image| F[ECR Repository]
+    C -->|Network| G[VPC + Public Subnets + SG]
+```
