@@ -37,9 +37,9 @@ I build production-grade architectures on **AWS** and **Azure** using **Terrafor
 | # | Project | Description | Key Technologies |
 |---|----------|--------------|------------------|
 | 1️⃣ | [VM Scale Set Deployment](./azure/01-azure-vm-scale-set) | Scalable web app with Azure VM Scale Sets | VMSS, Azure Load Balancer, Terraform |
-| 2️⃣ | [Container Apps](./azure/02-azure-container-apps) | Deploying Flask API using Azure Container Apps | ACA, ACR, Bicep |
-| 3️⃣ | [AKS with Terraform](./azure/03-terraform-aks-deployment) | Kubernetes cluster managed via Terraform | AKS, Terraform, Helm |
-| 4️⃣ | [Azure Functions API](./azure/04-serverless-api) | Serverless API with Cosmos DB backend | Azure Functions, Cosmos DB |
+| 2️⃣ | [Container Apps](https://github.com/lamine93/container-app) | Deploying Flask API using Azure Container Apps | ACA, ACR, Bicep |
+| 3️⃣ | [AKS with Terraform](https://github.com/lamine93/aks-demo) | Kubernetes cluster managed via Terraform | AKS, Terraform, ACR |
+| 4️⃣ | [Azure Functions API](https://github.com/lamine93/azure-app-function-v2) | Serverless API with Cosmos DB backend | Azure Functions, Cosmos DB |
 
 ---
 
