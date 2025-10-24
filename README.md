@@ -79,3 +79,63 @@ graph TD
     C -->|Pull Image| F[ECR Repository]
     C -->|Network| G[VPC + Public Subnets + SG]
 ```
+
+**Azure Hub Spoke topology**
+
+
+```mermaid
+%%{init: {
+  "theme": "dark",
+  "themeVariables": {
+    "primaryColor": "#0b1220",
+    "primaryTextColor": "#e5e7eb",
+    "primaryBorderColor": "#6b7280",
+    "lineColor": "#60a5fa",
+    "tertiaryColor": "#0b1220",
+    "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+    "edgeLabelBackground": "#0b1220"
+  }
+}}%%
+
+flowchart TB
+  %% --- TOP: Internet -> VPN/ER ---
+  Internet[(🌍 Internet)]
+  GW["🔐 VPN / ExpressRoute &nbsp"]
+  Internet --> GW
+
+  %% --- HUB ---
+  subgraph HUB["💠 **HUB VNet - 10.0.0.0/16**&nbsp"]
+    direction TB
+    FW["🔥 Azure Firewall<br/>10.0.1.0/24<br/>(AzureFirewallSubnet)"]
+    Bastion["🧑‍💻 Azure Bastion<br/>10.0.2.0/24<br/>(AzureBastionSubnet)&nbsp"]
+  end
+
+  %% --- SPOKES GROUP ---
+  subgraph SPOKES["**Spokes**&nbsp"]
+    
+    direction LR
+    Spoke1["🛰️ Spoke1 (App) &nbsp<br/>10.10.0.0/16<br/>• app-subnet<br/>• NSG"]
+    Spoke2["🛰️ Spoke2 (Data)&nbsp<br/>10.20.0.0/16<br/>• data-subnet<br/>• NSG"]
+  end
+
+  %% --- FLOWS ---
+  GW --> HUB
+  HUB == "Peering + UDR&nbsp&nbsp" ==> Spoke1
+  HUB == "Peering + UDR&nbsp&nbsp" ==> Spoke2
+
+  %% --- OPTIONALS BOX ---
+%%   subgraph OPTIONS["Options"]
+%%     direction TB
+%%     NAT["↗️ NAT Gateway (egress centralisé)"]
+%%     PDNS["📛 Private DNS + Private Endpoints<br/>(KV, ACR, Storage, DB)"]
+%%     NOTE["🔭 Bastion pour SSH/RDP (no public IP on VMs)"]
+%%   end
+
+  %% --- STYLES ---
+  classDef hub    fill:#132a4a,stroke:#60a5fa,stroke-width:2px,color:#f3f4f6;
+  classDef spokes fill:#0f3a2e,stroke:#10b981,stroke-width:2px,color:#e7f8f2;
+  classDef opts   fill:#1f2937,stroke:#9ca3af,stroke-width:1.5px,color:#e5e7eb;
+  class HUB hub;
+  class SPOKES spokes;
+  class OPTIONS opts;
+```
