@@ -9,7 +9,7 @@ with a focus on **Infrastructure as Code (Terraform)**, **container orchestratio
 ## 🧠 About Me
 
 I’m an HPC and Cloud Engineer passionate about automation, scalability, and infrastructure design.  
-I build production-grade architectures on **AWS** and **Azure** using **Terraform**, **Docker**, and **CI/CD pipelines**.
+I build production-grade architectures on **AWS** and **Azure** using **Terraform**, **Docker**,**K8s** and **CI/CD pipelines**.
 
 - 🌍 Multi-Cloud: AWS & Azure & Google 
 - ⚙️ IaC: Terraform  
