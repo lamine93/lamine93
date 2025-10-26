@@ -139,3 +139,30 @@ flowchart TB
   class SPOKES spokes;
   class OPTIONS opts;
 ```
+
+**Azure Container + Cosmos DB**
+
+```mermaid
+
+flowchart TB
+  subgraph GitHub["💻 GitHub Actions Pipeline"]
+    Build[⚙️ Build & Push Image to ACR]
+    Deploy[🚀 Terraform Apply / ACA Update]
+  end
+
+  ACR[(📦 Azure Container Registry)]
+  ACA_ENV["☁️ Azure Container Apps Environment"]
+  ACA_APP["🐳 Azure Container App (FastAPI)"]
+  KV["🔐 Azure Key Vault"]
+  COSMOS[(🪐 Azure Cosmos DB)]
+  USERS["👥 Users"]
+
+  USERS -->|"HTTP Request"| ACA_APP
+  ACA_APP --> COSMOS
+  ACA_APP --> KV
+  Build --> ACR
+  ACR --> ACA_APP
+  Deploy --> ACA_APP
+  ACA_APP --> ACA_ENV
+
+```
