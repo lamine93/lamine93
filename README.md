@@ -47,7 +47,7 @@ I build production-grade architectures on **AWS** and **Azure** using **Terrafor
 
 | Category | AWS | Azure |
 |-----------|-----|--------|
-| **Compute** | ECS Fargate, Lambda | VMSS, Container Apps, AKS |
+| **Compute** | ECS Fargate, Lambda, EC2, ASB, SSM | VMSS, Container Apps, AKS |
 | **Database** | RDS, DynamoDB | Cosmos DB |
 | **IaC** | Terraform | Terraform |
 | **Secrets** | Secrets Manager | Key Vault |
