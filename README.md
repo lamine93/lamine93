@@ -68,16 +68,88 @@ graph TD
     C -->|Secrets| E[AWS Secrets Manager]
 ```
 
-**🚀 AWS ECS Fargate + ALB Deployment (Terraform)**
+**🚀 AWS autoscaling & monotoring**
 
 ```mermaid
-graph TD
-    A[User] -->|HTTP| B(ALB - Application Load Balancer)
-    B -->|Forward traffic| C[ECS Fargate Service]
-    C -->|Runs Container| D[Docker App]
-    D -->|Logs| E[CloudWatch Logs]
-    C -->|Pull Image| F[ECR Repository]
-    C -->|Network| G[VPC + Public Subnets + SG]
+
+%%{init: {
+  "theme": "dark",
+  "themeVariables": {
+    "primaryColor": "#1f2937",
+    "primaryTextColor": "#e5e7eb",
+    "primaryBorderColor": "#4b5563",
+    "lineColor": "#9ca3af",
+    "secondaryColor": "#0f172a",
+    "tertiaryColor": "#111827",
+    "fontSize": "14px"
+  }
+}}%%
+flowchart TB
+  %% Groups
+  subgraph Internet["🌐 Internet"]
+    Client[(User / Browser)]
+  end
+
+  subgraph AWS["☁️ AWS Account / Region"]
+    direction TB
+
+    subgraph VPC["VPC (DNS On) 10.0.0.0/16"]
+      direction TB
+
+      %% Public tier
+      subgraph Public["Public Subnets (ALB + NAT)"]
+        direction TB
+        IGW[[IGW]]
+        ALB["⚖️ ALB (HTTP/HTTPS)"]
+        NAT["🔁 NAT Gateway (EIP)"]
+      end
+
+      %% Private tier
+      subgraph Private["Private Subnets (No Public IP)"]
+        direction TB
+        ASG["📈 Auto Scaling Group"]
+        EC2A["🖥️ EC2 #1"]
+        EC2B["🖥️ EC2 #2"]
+      end
+    end
+
+    %% Control plane services (no direct path drawing to avoid clutter)
+    subgraph Control["AWS Control / Management"]
+      direction TB
+      SSM["🔐 Systems Manager (SSM)"]
+      CW["📊 CloudWatch (metrics/alarms)"]
+    end
+  end
+
+  %% Traffic flow
+  Client -->|HTTP/HTTPS| ALB
+  ALB -->|Target Group : app_port| ASG
+  ASG --> EC2A
+  ASG --> EC2B
+
+  %% Outbound path from private subnets
+  EC2A -->|443 egress| NAT
+  EC2B -->|443 egress| NAT
+  NAT -->|0.0.0.0/0| IGW
+
+  %% Mgmt
+  EC2A -. SSM Agent (443) .-> SSM
+  EC2B -. SSM Agent (443) .-> SSM
+  EC2A -. Metrics/Logs .-> CW
+  EC2B -. Metrics/Logs .-> CW
+
+  %% Styling
+  classDef tier fill:#0b1220,stroke:#334155,color:#e5e7eb;
+  classDef node fill:#111827,stroke:#475569,color:#e5e7eb;
+  classDef svc  fill:#0b3b2e,stroke:#22c55e,color:#eafff4;   %% mgmt services green-ish
+  classDef net  fill:#0e1a2b,stroke:#60a5fa,color:#e5f0ff;   %% network blue-ish
+  classDef edge stroke:#94a3b8,color:#cbd5e1;
+
+  class VPC,Public,Private tier;
+  class ALB,NAT,ASG,EC2A,EC2B,Client node;
+  class SSM,CW svc;
+  class IGW net;
+
 ```
 
 **Azure Hub Spoke topology**
