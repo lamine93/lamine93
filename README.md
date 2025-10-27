@@ -27,7 +27,7 @@ I build production-grade architectures on **AWS** and **Azure** using **Terrafor
 |---|----------|--------------|------------------|
 | 1️⃣ | [Serverless API](https://github.com/lamine93/aws-lambda-serverless) | REST API using Lambda, API Gateway & DynamoDB | AWS Lambda, API Gateway, DynamoDB, Cognito, Terraform |
 | 2️⃣ | [Three-Tier Web App](https://github.com/lamine93/aws-three-thier-app) | Flask API on ECS Fargate + RDS + ALB | ECS, RDS, ALB, Secrets Manager |
-| 3️⃣ | [Monitoring & Scaling](https://github.com/lamine93/aws-autoscaling-monotoring) | ECS Auto Scaling with CloudWatch | ELB, CloudWatch, EC2, SSM, Terraform |
+| 3️⃣ | [Monitoring & Scaling](https://github.com/lamine93/aws-autoscaling-monotoring) | ECS Auto Scaling with CloudWatch | ELB, CloudWatch, EC2, SSM, SSN, Terraform |
 | 5️⃣ | [CI/CD Pipeline](https://github.com/lamine93/aws-ecs-fargate) | GitHub Actions deploying Docker images to ECS | GitHub Actions, ECR, Terraform |
 
 ---
