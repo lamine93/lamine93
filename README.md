@@ -41,6 +41,15 @@ I build production-grade architectures on **AWS** and **Azure** using **Terrafor
 | 3️⃣ | [AKS with Terraform](https://github.com/lamine93/gitops-aks) | Kubernetes cluster managed via ArgoCD | AKS, Terraform, ACR |
 | 4️⃣ | [Azure Functions API](https://github.com/lamine93/azure-app-function-v2) | Serverless API with Cosmos DB backend | Azure Functions, Cosmos DB |
 
+### 🟩 GCP Projects
+
+| # | Project | Description | Key Technologies |
+|---|----------|--------------|------------------|
+| 1️⃣ | [GKE](https://github.com/lamine93/gke-lab) | Flask GKE Application | GKE, Artifact Registry, Docker, Terraform |
+
+
+
+
 ---
 
 ## 🧰 Tech Stack Summary
