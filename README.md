@@ -16,7 +16,7 @@ I build production-grade architectures on **AWS**, **Azure** and **Google** usin
 - 🐳 Containers: Docker, ECS, AKS, GKE, EKS  
 - 🔒 Security: IAM, Secrets Manager, Azure Key Vault, RBAC  
 - 📊 Monitoring: CloudWatch, Azure Monitor
-- CI/CD: Github Action  
+- CI/CD: Github Action, Gitlab CI  
 
 ---
 
